@@ -6,10 +6,11 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
+      ANDROID_HOME: /opt/android
     dependencies:
       pre:
-        - mkdir: $ANDROID_SDK_TOOL/Sdk/licenses
-        - cat: android-sdk-license > $ANDROID_SDK_TOOL/licenses/android-sdk-licensese
+        - mkdir $ANDROID_HOME/licenses
+        - cat android-sdk-license > $ANDROID_HOME/licenses/android-sdk-license
     steps:
       - checkout
       - restore_cache:

@@ -8,8 +8,8 @@ jobs:
       JVM_OPTS: -Xmx3200m
     dependencies:
       pre:
-        - mkdir: C:\Users\Batta\AppData\Local\Android\Sdk/licenses
-        - cat: android-sdk-license > C:\Users\Batta\AppData\Local\Android\Sdk/licenses/android-sdk-licensese
+        - mkdir: $ANDROID_SDK_TOOL/Sdk/licenses
+        - cat: android-sdk-license > $ANDROID_SDK_TOOL/licenses/android-sdk-licensese
     steps:
       - checkout
       - restore_cache:

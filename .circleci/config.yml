@@ -22,7 +22,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
           name: License Android SDK Build-Tools 30.0.2 accepted
-          command: yes | /opt/android/sdk/tools/bin/sdkmanager "build-tools;30.0.2”
+          command: yes | /opt/android/sdk/tools/bin/sdkmanager "build-tools;30.0.2"
       - run:
           name: Run Tests
           command: ./gradlew clean test

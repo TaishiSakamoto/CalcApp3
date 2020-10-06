@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/code
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
       ANDROID_HOME: /opt/android
@@ -19,8 +19,18 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
 
       - run:
+          name: System information
+          command: |
+            echo y | android update sdk --no-ui --all --filter "build-tools;30.0.2"
+            echo y | android update sdk --no-ui --all --filter "platforms;android-30"
+
+      - run:
           name: chmod permissions
           command: chmod +x ./gradlew
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
 
       - save_cache:
           paths:

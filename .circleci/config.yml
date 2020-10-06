@@ -22,7 +22,7 @@ jobs:
           name: System information
           command: |
             sudo mkdir $ANDROID_HOME/licenses
-            echo [ANDROID_SDK_LICENSE] >> $ANDROID_HOME/licenses/android-sdk-license
+            sudo echo [ANDROID_SDK_LICENSE] >> $ANDROID_HOME/licenses/android-sdk-license
             echo y | android update sdk --no-ui --all --filter "build-tools;30.0.2"
             echo y | android update sdk --no-ui --all --filter "platforms;android-30"
       - run:

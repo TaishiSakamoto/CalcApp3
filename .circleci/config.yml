@@ -18,11 +18,11 @@ jobs:
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
-#      - run:
-#          name: System information
-#          command:
-#            echo y | android update sdk --no-ui --all --filter "build-tools;30.0.2"
-#            echo y | android update sdk --no-ui --all --filter "platforms;android-30"
+      - run:
+          name: System information
+          command: |
+            echo y | android update sdk --no-ui --all --filter "build-tools;30.0.2"
+            echo y | android update sdk --no-ui --all --filter "platforms;android-30"
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies

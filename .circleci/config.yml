@@ -16,15 +16,15 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
           name: System information
           command: |
             mkdir $ANDROID_HOME/licenses
             echo [ANDROID_SDK_LICENSE] >> $ANDROID_HOME/licenses/android-sdk-license
             echo y | android update sdk --no-ui --all --filter "build-tools;30.0.2"
             echo y | android update sdk --no-ui --all --filter "platforms;android-30"
-      - run:
-          name: chmod permissions
-          command: chmod +x ./gradlew
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies

@@ -33,12 +33,6 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew clean test
-      
-      - run:
-          name: デバッグ APK とリリース APK のビルド
-          command: |
-            ./gradlew :app:assembleDebug
-            ./gradlew :app:assembleDebugAndroidTest
 
       - store_artifacts:
           path: app/build/reports
@@ -46,7 +40,11 @@ jobs:
 
       - store_test_results:
           path: app/build/test-results
-          
+      
+      - run:
+          name: Build apk
+          command: ./gradlew assembleRelease
+
       - store_artifacts:
           path: app/build/outputs/apk/prod/release/app-prod-release-unsigned.apk
           destination: app-release.apk

@@ -36,15 +36,21 @@ jobs:
 
       - store_artifacts:
           path: app/build/reports
-          destination: reports
+          destination: app-reports
 
       - store_test_results:
           path: app/build/test-results
       
       - run:
-          name: Build apk
-          command: ./gradlew assembleRelease
-
+          name: Run Build
+          command: ./gradlew build
+          
       - store_artifacts:
-          path: app/build/outputs/apk/prod/release/app-prod-release-unsigned.apk
-          destination: app-release.apk
+          path: app/build/outputs/apk/debug/
+          destination: artifact-file
+          
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
